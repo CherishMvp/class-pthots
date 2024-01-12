@@ -1,4 +1,4 @@
-const apiEnv: ApiEnv = 'dev';
+const apiEnv: ApiEnv = 'dev'
 
 const envMap = {
   dev: {
@@ -17,16 +17,16 @@ const envMap = {
     baseUrl: 'http://m.dev.xxx.com',
     apiBaseUrl: 'https://m.devapi.xxx.com'
   }
-};
-
-type ApiEnv = keyof typeof envMap;
-type Env<T extends ApiEnv> = {
-  apiEnv: T;
-} & (typeof envMap)[T];
-
-function createEnv(apiEnv: ApiEnv): Env<typeof apiEnv> {
-  return Object.assign({ apiEnv }, envMap[apiEnv]);
 }
 
-const env = createEnv(apiEnv);
-export default env;
+type ApiEnv = keyof typeof envMap
+type Env<T extends ApiEnv> = {
+  apiEnv: T
+} & (typeof envMap)[T]
+
+function createEnv(apiEnv: ApiEnv): Env<typeof apiEnv> {
+  return Object.assign({ apiEnv }, envMap[apiEnv])
+}
+
+const env = createEnv(apiEnv)
+export default env

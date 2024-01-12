@@ -1,55 +1,55 @@
 <script lang="ts" setup>
-import apiTest from '@/api/apiTest';
-import { getCommonParams, setCommonParams } from '@/config/commonParams';
-import { useInit } from '@/hooks/useInit';
-import { useTitle } from '@/hooks/useTitle';
-import { onUrlPage } from '@/utils/router';
-import uniAsync from '@/utils/uniAsync';
+  import apiTest from '@/api/apiTest'
+  import { getCommonParams, setCommonParams } from '@/config/commonParams'
+  import { useInit } from '@/hooks/useInit'
+  import { useTitle } from '@/hooks/useTitle'
+  import { onUrlPage } from '@/utils/router'
+  import uniAsync from '@/utils/uniAsync'
 
-onLoad(() => {
-  const { pageName, pagePath, pageQuery } = useInit();
-  console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery');
-});
+  onLoad(() => {
+    const { pageName, pagePath, pageQuery } = useInit()
+    console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery')
+  })
 
-const { title, changeTitle } = useTitle();
+  const { title, changeTitle } = useTitle()
 
-const { name, fullName, updateName } = useStore('test');
+  const { name, fullName, updateName } = useStore('test')
 
-async function getTest() {
-  const getTest = await apiTest.getTest({ a: 1 });
-  if (!getTest) {
-    uni.showToast({
-      title: '自定义异常处理'
-    });
-    return;
+  async function getTest() {
+    const getTest = await apiTest.getTest({ a: 1 })
+    if (!getTest) {
+      uni.showToast({
+        title: '自定义异常处理'
+      })
+      return
+    }
+    // getTest.data?.age
+    // getTest.data?.name
+    console.log(getTest, 'getTest')
   }
-  // getTest.data?.age
-  // getTest.data?.name
-  console.log(getTest, 'getTest');
-}
-async function postTest() {
-  const postTest = await apiTest.postTest({ a: 1 });
-  if (!postTest) return;
-  // postTest.data?.val
-  console.log(postTest, 'postTest');
-}
+  async function postTest() {
+    const postTest = await apiTest.postTest({ a: 1 })
+    if (!postTest) return
+    // postTest.data?.val
+    console.log(postTest, 'postTest')
+  }
 
-function getCommonParam() {
-  console.log(getCommonParams());
-}
-function setCommonParam() {
-  setCommonParams({ channel: 'test' });
-  getCommonParam();
-}
+  function getCommonParam() {
+    console.log(getCommonParams())
+  }
+  function setCommonParam() {
+    setCommonParams({ channel: 'test' })
+    getCommonParam()
+  }
 
-async function uniAsyncTest() {
-  const systemInfo = await uniAsync.getSystemInfo();
-  console.log(systemInfo, 'systemInfo');
-}
+  async function uniAsyncTest() {
+    const systemInfo = await uniAsync.getSystemInfo()
+    console.log(systemInfo, 'systemInfo')
+  }
 
-function onScrollToLower() {
-  console.log('自定义 onScrollToLower');
-}
+  function onScrollToLower() {
+    console.log('自定义 onScrollToLower')
+  }
 </script>
 
 <template>

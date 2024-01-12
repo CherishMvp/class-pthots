@@ -15,16 +15,16 @@ export default defineStore({
     return {
       name: '张三',
       token: 'token...'
-    };
+    }
   },
   getters: {
     fullName: (state) => {
-      return `${state.name}丰`;
+      return `${state.name}丰`
     }
   },
   actions: {
     updateName(name: any) {
-      this.name = name;
+      this.name = name
     }
   }
-});
+})

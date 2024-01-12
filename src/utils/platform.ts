@@ -30,77 +30,75 @@ enum EPlatform {
 
 /** 使用条件编译获取平台信息 */
 function ifDefPlatform(): EPlatform {
-  let platform: EPlatform;
+  let platform: EPlatform
   // #ifdef APP-PLUS
-  platform = EPlatform.AppPlus;
+  platform = EPlatform.AppPlus
   // #endif
   // #ifdef APP-PLUS-NVUE
-  platform = EPlatform.AppPlusNvue;
+  platform = EPlatform.AppPlusNvue
   // #endif
   // #ifdef H5
-  platform = EPlatform.H5;
+  platform = EPlatform.H5
   // #endif
   // #ifdef MP-WEIXIN
-  platform = EPlatform.MpWeixin;
+  platform = EPlatform.MpWeixin
   // #endif
   // #ifdef MP-ALIPAY
-  platform = EPlatform.MpAlipay;
+  platform = EPlatform.MpAlipay
   // #endif
   // #ifdef MP-BAIDU
-  platform = EPlatform.MpBaidu;
+  platform = EPlatform.MpBaidu
   // #endif
   // #ifdef MP-TOUTIAO
-  platform = EPlatform.MpToutiao;
+  platform = EPlatform.MpToutiao
   // #endif
   // #ifdef MP-QQ
-  platform = EPlatform.MpQq;
+  platform = EPlatform.MpQq
   // #endif
   // #ifdef MP-360
-  platform = EPlatform.Mp360;
+  platform = EPlatform.Mp360
   // #endif
   // #ifdef MP
-  platform = EPlatform.Mp;
+  platform = EPlatform.Mp
   // #endif
   // #ifdef quickapp-webview
-  platform = EPlatform.QuickappWebview;
+  platform = EPlatform.QuickappWebview
   // #endif
   // #ifdef quickapp-webview-union
-  platform = EPlatform.QuickappWebviewUnion;
+  platform = EPlatform.QuickappWebviewUnion
   // #endif
   // #ifdef quickapp-webview-huawei
-  platform = EPlatform.QuickappWebviewHuawei;
+  platform = EPlatform.QuickappWebviewHuawei
   // #endif
-  return platform;
+  return platform
 }
 
 /** 平台类型 */
-export const platform: EPlatform = ifDefPlatform();
+export const platform: EPlatform = ifDefPlatform()
 
 /** H5 */
-export const isH5 = platform === EPlatform.H5;
+export const isH5 = platform === EPlatform.H5
 /** 微信小程序 */
-export const isMpWeixin = platform === EPlatform.MpWeixin;
+export const isMpWeixin = platform === EPlatform.MpWeixin
 /** 支付宝小程序 */
-export const isMpAlipay = platform === EPlatform.MpAlipay;
+export const isMpAlipay = platform === EPlatform.MpAlipay
 /** 百度小程序 */
-export const isMpBaidu = platform === EPlatform.MpBaidu;
+export const isMpBaidu = platform === EPlatform.MpBaidu
 /** 字节跳动小程序 */
-export const isMpToutiao = platform === EPlatform.MpToutiao;
+export const isMpToutiao = platform === EPlatform.MpToutiao
 /** QQ小程序 */
-export const isMpQq = platform === EPlatform.MpQq;
+export const isMpQq = platform === EPlatform.MpQq
 /** 360小程序 */
-export const isMp360 = platform === EPlatform.Mp360;
+export const isMp360 = platform === EPlatform.Mp360
 /** 微信小程序/支付宝小程序/百度小程序/字节跳动小程序/QQ小程序/360小程序 */
-export const isMp = platform === EPlatform.Mp;
+export const isMp = platform === EPlatform.Mp
 /** 快应用通用(包含联盟、华为) */
-export const isQuickappWebview = platform === EPlatform.QuickappWebview;
+export const isQuickappWebview = platform === EPlatform.QuickappWebview
 /** 快应用联盟 */
-export const isQuickappWebviewUnion =
-  platform === EPlatform.QuickappWebviewUnion;
+export const isQuickappWebviewUnion = platform === EPlatform.QuickappWebviewUnion
 /** 快应用华为 */
-export const isQuickappWebviewHuawei =
-  platform === EPlatform.QuickappWebviewHuawei;
+export const isQuickappWebviewHuawei = platform === EPlatform.QuickappWebviewHuawei
 /** 是否开发环境 */
-export const isDevelopment = import.meta.env.MODE === 'development';
+export const isDevelopment = import.meta.env.MODE === 'development'
 /** 是否线上环境 */
-export const isProduction = import.meta.env.MODE === 'production';
+export const isProduction = import.meta.env.MODE === 'production'

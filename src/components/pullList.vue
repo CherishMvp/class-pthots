@@ -1,22 +1,22 @@
 <script setup lang="ts">
-defineProps({
-  scrollTop: {
-    type: Number,
-    default: 0
-  },
-  onScrollToLower: {
-    type: Function,
-    default: () => {
-      console.log('onScrollToLower');
+  defineProps({
+    scrollTop: {
+      type: Number,
+      default: 0
+    },
+    onScrollToLower: {
+      type: Function,
+      default: () => {
+        console.log('onScrollToLower')
+      }
+    },
+    onScroll: {
+      type: Function,
+      default: () => {
+        console.log('onScroll')
+      }
     }
-  },
-  onScroll: {
-    type: Function,
-    default: () => {
-      console.log('onScroll');
-    }
-  }
-});
+  })
 </script>
 
 <template>

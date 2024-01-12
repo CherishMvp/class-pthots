@@ -6,14 +6,14 @@ const uniAsync = new Proxy({} as any, {
         uni[name]({
           ...obj,
           success: (ret: any) => {
-            resolve(ret);
+            resolve(ret)
           },
           fail: (err: any) => {
-            reject(err);
+            reject(err)
           }
-        });
-      });
+        })
+      })
   }
-});
+})
 
-export default uniAsync;
+export default uniAsync

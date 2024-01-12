@@ -25,20 +25,7 @@ module.exports = {
     'at-rule-no-unknown': [
       true,
       {
-        ignoreAtRules: [
-          'content',
-          'each',
-          'error',
-          'extend',
-          'for',
-          'function',
-          'if',
-          'else',
-          'include',
-          'mixin',
-          'return',
-          'while',
-        ],
+        ignoreAtRules: ['content', 'each', 'error', 'extend', 'for', 'function', 'if', 'else', 'include', 'mixin', 'return', 'while'],
       },
     ],
     'selector-type-no-unknown': [true, { ignoreTypes: ['page', 'radio', 'checkbox'] }],
