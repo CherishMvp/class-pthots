@@ -1,12 +1,12 @@
 <template>
   <div class="wf-item-page">
-    <image :src="item.image" mode="widthFix" class="item-img" />
+    <image :src="item?.imageUrl" mode="widthFix" class="item-img" />
     <div class="item-info flex-row">
-      <image :src="item.avatar" mode="aspectFill" class="info-avatar" />
+      <image :src="item?.imageUrl" mode="aspectFill" class="info-avatar" />
       <div class="flex right">
-        <div class="fs-30 color-black mr-20">{{ item.nickName }}</div>
+        <div class="fs-30 color-black mr-20">{{ item?.name }}</div>
         <div>
-          <wd-tag round type="primary" color="#aeb0ff" bg-color="#f0f2ff">{{ item.tag }}</wd-tag>
+          <wd-tag round type="primary" color="#aeb0ff" bg-color="#f0f2ff">{{ item?.dormitoryId }}</wd-tag>
         </div>
       </div>
     </div>
@@ -30,7 +30,7 @@
 
 <style>
   :deep(.wd-tag__text) {
-    line-height: 1;
+   /* line-height: 1;*/
   }
 </style>
 

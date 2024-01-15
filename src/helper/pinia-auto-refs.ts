@@ -27,5 +27,5 @@ const storeExports = {
 export function useStore<T extends keyof typeof storeExports>(storeName: T) {
   const targetStore = storeExports[storeName](store)
   const storeRefs = storeToRefs(targetStore)
-  return { ...targetStore, ...storeRefs } as unknown as AutoToRefs<ReturnType<(typeof storeExports)[T]>>
+  return { ...targetStore, ...storeRefs } as unknown as AutoToRefs<ReturnType<typeof storeExports[T]>>
 }

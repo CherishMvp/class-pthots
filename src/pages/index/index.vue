@@ -5,6 +5,7 @@
   import { useToast } from 'wot-design-uni'
 
   const { title, changeTitle } = useTitle()
+  const tipInfo=ref('')
   const toast = useToast()
   const tabList = ref<RoomID.params[]>([])
   function goTest() {
@@ -13,13 +14,14 @@
     })
   }
 
-  const swiperList = ref([
-    'https://unpkg.com/wot-design-uni-assets/meng.jpg',
-    'https://unpkg.com/wot-design-uni-assets/capybara.jpg',
-    'https://unpkg.com/wot-design-uni-assets/panda.jpg',
-    'https://img.yzcdn.cn/vant/cat.jpeg',
-    'https://unpkg.com/wot-design-uni-assets/meng.jpg',
-  ])
+  // const swiperList = ref([
+  //   'https://unpkg.com/wot-design-uni-assets/meng.jpg',
+  //   'https://unpkg.com/wot-design-uni-assets/capybara.jpg',
+  //   'https://unpkg.com/wot-design-uni-assets/panda.jpg',
+  //   'https://img.yzcdn.cn/vant/cat.jpeg',
+  //   'https://unpkg.com/wot-design-uni-assets/meng.jpg',
+  // ])
+  const swiperList = ref<any>([])
   const tabs = ref(['这', '是', '一', '个', '例子'])
   // 使用name匹配
   const current_tab = ref('首页')
@@ -47,9 +49,16 @@
   ]
 
   const getCurrentRoomPhotos = async (id: number) => {
-    const res = (await apiClassPhoto.getPhotosByRoomId({ id })).data
-    list.value = res
+    const res = (await apiClassPhoto.getPhotosByRoomId({ id })).data as Array<any>
     console.log('getCurrentRoomPhotos', res)
+    list.value = res[0]?.members
+    tipInfo.value=res[0]?.desc
+    console.log('list.value', list.value)
+    swiperList.value = res[0]?.swiper_list
+    console.log('swiperList.value', swiperList.value)
+    // const data = toRaw(swiperList.value).split('\\n')
+    // console.log('swiperList.value', data)
+    // 使用回车键 ("\n") 分隔 URL
   }
   const getAllRoomIDs = async () => {
     const res = (await apiClassPhoto.getAllRoomIds()).data
@@ -117,10 +126,10 @@
     <div class="fs-120 font-400 color-amber">re</div>
     <wd-button type="primary">xx</wd-button> -->
   </view>
-  <wd-tabs v-model="current_tab" animated swipeable @change="handleTabChange($event)">
+  <wd-tabs v-model="current_tab" animated :sticky="true" swipeable @change="handleTabChange($event)">
     <block v-for="item in tabList" :key="item.id">
       <wd-tab custom-class="custom-class-tabs-content" :name="item.title" :title="item.title">
-        <view class="content">{{ item.desc }}</view>
+        <!-- <view class="content">{{ item.desc }}</view> -->
         <view class="card-swiper">
           <wd-swiper
             autoplay
@@ -136,7 +145,7 @@
           ></wd-swiper>
         </view>
         <div class="m20">
-          <wd-notice-bar prefix="notification-filled" text="这是一条消息提示信息，这是一条消息提示信息，这是一条消息提示信息" color="#34D19D" background-color="#f0f9eb" />
+          <wd-notice-bar prefix="notification-filled" :text="tipInfo" color="#34D19D" background-color="#f0f9eb" />
         </div>
         <div class="main_content">
           <WaterfallsFlow :wfList="list" @itemTap="itemTap" />

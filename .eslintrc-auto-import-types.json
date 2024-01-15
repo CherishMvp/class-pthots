@@ -3,6 +3,13 @@
     "Http": true,
     "GetTest": true,
     "PostTest": true,
+    "GetPhotosByClassId": true,
+    "CreateRoom": true,
+    "UpdateRoom": true,
+    "DeleteRoom": true,
+    "CreateMember": true,
+    "UpdateMember": true,
+    "RoomID": true,
     "Types": true,
     "User": true
   }
