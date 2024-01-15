@@ -16,6 +16,6 @@ export function useInit() {
   return {
     pageName,
     pagePath,
-    pageQuery
+    pageQuery,
   }
 }

@@ -9,6 +9,7 @@
         "trailingComma": "none"
       }
     ],
+    "no-trailing-spaces": "off",
     "antfu/if-newline": "off",
     "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/ban-ts-ignore": "off",

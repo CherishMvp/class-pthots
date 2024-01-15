@@ -14,7 +14,7 @@ function reject(err: { errno: number; errmsg: string }) {
 
     default:
       uni.showToast({
-        title: errmsg
+        title: errmsg,
       })
       break
   }
@@ -33,12 +33,12 @@ function baseRequest(method: 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELE
       method,
       timeout: 20000,
       header: {
-        'content-type': method === 'GET' ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded'
+        'content-type': method === 'GET' ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded',
       },
       data,
       success: (res: any) => {
         if (res.statusCode >= 200 && res.statusCode < 400) {
-          if (res.data.errno === 0) {
+          if (res.data.code === 0) {
             responseData = res.data
           } else {
             reject(res.data)
@@ -46,21 +46,21 @@ function baseRequest(method: 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELE
         } else {
           reject({
             errno: -1,
-            errmsg: '抢购火爆，稍候片刻！'
+            errmsg: '抢购火爆，稍候片刻！',
           })
         }
       },
       fail: () => {
         reject({
           errno: -1,
-          errmsg: '网络不给力，请检查你的网络设置~'
+          errmsg: '网络不给力，请检查你的网络设置~',
         })
       },
       complete: (data) => {
         console.log(data, 'data')
         resolve(responseData)
         hideLoading()
-      }
+      },
     })
   })
 }
@@ -69,13 +69,25 @@ const http = {
   get: <T>(api: string, params: any) =>
     baseRequest('GET', api, {
       ...getCommonParams(),
-      ...params
+      ...params,
     }) as Http.Response<T>,
   post: <T>(api: string, params: any) =>
     baseRequest('POST', api, {
       ...getCommonParams(),
-      ...params
-    }) as Http.Response<T>
+      ...params,
+    }) as Http.Response<T>,
+
+  put: <T>(api: string, params: any) =>
+    baseRequest('PUT', api, {
+      ...getCommonParams(),
+      ...params,
+    }) as Http.Response<T>,
+
+  delete: <T>(api: string, params: any) =>
+    baseRequest('DELETE', api, {
+      ...getCommonParams(),
+      ...params,
+    }) as Http.Response<T>,
 }
 
 export default http

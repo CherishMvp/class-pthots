@@ -20,7 +20,7 @@ export function parseUrl(fullPath: string) {
   return {
     name,
     path,
-    query
+    query,
   }
 }
 
