@@ -1,4 +1,4 @@
-const apiEnv: ApiEnv = 'devWin'
+const apiEnv: ApiEnv = 'prod'
 
 const envMap = {
   dev: {
@@ -14,8 +14,8 @@ const envMap = {
     apiBaseUrl: 'https://m.betaapi.xxx.com',
   },
   prod: {
-    baseUrl: 'https://m.xxx.com',
-    apiBaseUrl: 'https://m.api.xxx.com',
+    baseUrl: 'https://class-admin.fancyzh.top/api',
+    apiBaseUrl: 'https://class-admin.fancyzh.top/api',
   },
   local: {
     baseUrl: 'http://m.dev.xxx.com',

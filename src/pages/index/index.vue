@@ -123,7 +123,7 @@
   async function handleTabChange(e: { index: any; name: string }) {
     console.log(e)
     await resetParams()
-    await fetchHitokoto()
+    // await fetchHitokoto()//小程序不支持fetch
     current_tab.value = e.name
     const id = tabList.value.find((i: any) => i.title == e.name)?.id as number
     console.log('id', id)
@@ -161,7 +161,7 @@
           ></wd-swiper>
         </view>
         <div class="m20 w-95vw">
-          <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="hitokotoInfo.hitokotoText" color="#34D19D" background-color="#f0f9eb" />
+          <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="tipInfo" color="#34D19D" background-color="#f0f9eb" />
         </div>
         <div class="main_content">
           <WaterfallsFlow :wfList="list" @itemTap="itemTap" />
