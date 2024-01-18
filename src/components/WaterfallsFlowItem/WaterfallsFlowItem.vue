@@ -1,12 +1,12 @@
 <template>
   <div class="wf-item-page">
-    <image :src="item?.imageUrl" mode="widthFix" class="item-img" />
+    <image :src="item?.imageUrl" mode="widthFix" @click="previewImage(item.imageUrl)" class="item-img" />
     <div class="item-info flex-row">
       <image :src="item?.imageUrl" mode="aspectFill" class="info-avatar" />
       <div class="flex right">
         <div class="fs-30 color-black mr-20">{{ item?.name }}</div>
         <div>
-          <wd-tag round type="primary" color="#aeb0ff" bg-color="#f0f2ff">{{ item?.dormitoryId }}</wd-tag>
+          <wd-tag round type="primary" color="#aeb0ff" bg-color="#f0f2ff">{{ item?.tag.length ? item?.tag : item?.dormitoryId }}</wd-tag>
         </div>
       </div>
     </div>
@@ -26,11 +26,20 @@
       required: true,
     },
   })
+  const previewImage = (params) => {
+    uni.previewImage({
+      urls: [params],
+      success: (result) => {
+        console.log('预览成功', result)
+      },
+      fail: (error) => {},
+    })
+  }
 </script>
 
 <style>
   :deep(.wd-tag__text) {
-   /* line-height: 1;*/
+    /* line-height: 1;*/
   }
 </style>
 

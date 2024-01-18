@@ -2,10 +2,14 @@
   import apiClassPhoto from '@/api/apiClassPhoto'
   import { useTitle } from '@/hooks/useTitle'
   import { forward } from '@/utils/router'
-  import { useToast } from 'wot-design-uni'
-
+  import { useToast } from 'wot-design-uni/components/wd-toast'
   const { title, changeTitle } = useTitle()
-  const tipInfo=ref('')
+
+  const tipInfo = ref('')
+  const isScrollable = computed((): boolean => {
+    return Boolean(tipInfo.value.length) ?? false
+  })
+
   const toast = useToast()
   const tabList = ref<RoomID.params[]>([])
   function goTest() {
@@ -13,14 +17,11 @@
       a: 1,
     })
   }
+  const hitokotoInfo = reactive({
+    hitokotoText: '',
+    href: 'https://hitokoto.cn/?uuid=',
+  })
 
-  // const swiperList = ref([
-  //   'https://unpkg.com/wot-design-uni-assets/meng.jpg',
-  //   'https://unpkg.com/wot-design-uni-assets/capybara.jpg',
-  //   'https://unpkg.com/wot-design-uni-assets/panda.jpg',
-  //   'https://img.yzcdn.cn/vant/cat.jpeg',
-  //   'https://unpkg.com/wot-design-uni-assets/meng.jpg',
-  // ])
   const swiperList = ref<any>([])
   const tabs = ref(['这', '是', '一', '个', '例子'])
   // 使用name匹配
@@ -48,15 +49,34 @@
     // 省略其他数据项...
   ]
 
+  const resetParams = async () => {
+    console.log('重置中')
+    list.value = []
+    swiperList.value = []
+    tipInfo.value = ''
+  }
+
+  async function fetchHitokoto() {
+    const response = await fetch('https://v1.hitokoto.cn')
+    const { uuid, hitokoto: hitokotoText } = await response.json()
+    hitokotoInfo.href = hitokotoInfo.href + uuid
+    hitokotoInfo.hitokotoText = hitokotoText
+    console.log('hitokotoInfo', hitokotoInfo)
+  }
+
   const getCurrentRoomPhotos = async (id: number) => {
+    // await resetParams()
+    console.log('等待重置完成')
     const res = (await apiClassPhoto.getPhotosByRoomId({ id })).data as Array<any>
     console.log('getCurrentRoomPhotos', res)
     list.value = res[0]?.members
-    tipInfo.value=res[0]?.desc
-    console.log('list.value', list.value)
+    tipInfo.value = res[0]?.desc
+    console.log('瀑布流数据', list.value)
     swiperList.value = res[0]?.swiper_list
+    const data = toRaw(swiperList.value).split('\n')
+    swiperList.value = data
     console.log('swiperList.value', swiperList.value)
-    // const data = toRaw(swiperList.value).split('\\n')
+
     // console.log('swiperList.value', data)
     // 使用回车键 ("\n") 分隔 URL
   }
@@ -80,24 +100,18 @@
     // }, 500)
     console.log('开始执行')
     await init()
+
     console.log('执行完了')
   })
 
   onReachBottom(() => {
-    // 模拟触底刷新
-    setTimeout(() => {
-      requiredData.forEach((item) => {
-        list.value.push(item)
-      })
-    }, 500)
+    console.log('到底了')
+    toast.success('更新')
   })
 
   onPullDownRefresh(() => {
     // 模拟下拉刷新
-    setTimeout(() => {
-      list.value = requiredData.reverse()
-      uni.stopPullDownRefresh()
-    }, 500)
+    console.log('下拉刷新')
   })
 
   const itemTap = (item) => {
@@ -108,6 +122,8 @@
   }
   async function handleTabChange(e: { index: any; name: string }) {
     console.log(e)
+    await resetParams()
+    await fetchHitokoto()
     current_tab.value = e.name
     const id = tabList.value.find((i: any) => i.title == e.name)?.id as number
     console.log('id', id)
@@ -144,8 +160,8 @@
             nextMargin="24px"
           ></wd-swiper>
         </view>
-        <div class="m20">
-          <wd-notice-bar prefix="notification-filled" :text="tipInfo" color="#34D19D" background-color="#f0f9eb" />
+        <div class="m20 w-95vw">
+          <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="hitokotoInfo.hitokotoText" color="#34D19D" background-color="#f0f9eb" />
         </div>
         <div class="main_content">
           <WaterfallsFlow :wfList="list" @itemTap="itemTap" />

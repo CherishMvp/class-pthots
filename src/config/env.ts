@@ -1,9 +1,13 @@
-const apiEnv: ApiEnv = 'dev'
+const apiEnv: ApiEnv = 'devWin'
 
 const envMap = {
   dev: {
     baseUrl: 'http://192.168.0.157:4211',
     apiBaseUrl: 'http://192.168.0.157:4211',
+  },
+  devWin: {
+    baseUrl: 'http://192.168.2.8:4211',
+    apiBaseUrl: 'http://192.168.2.8:4211',
   },
   beta: {
     baseUrl: 'http://m.beta.xxx.com',
