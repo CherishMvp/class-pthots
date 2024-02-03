@@ -10,6 +10,8 @@
     "CreateMember": true,
     "UpdateMember": true,
     "RoomID": true,
+    "signIn": true,
+    "getUserInfo": true,
     "Types": true,
     "User": true
   }

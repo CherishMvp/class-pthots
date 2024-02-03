@@ -1,6 +1,7 @@
 {
-  "name": "",
-  "appid": "",
+  // 使用kingdm工具箱的appid
+  "name": "同学相册",
+  "appid": "wxbcf4754df7440800",
   "description": "",
   "versionName": "1.0.0",
   "versionCode": "100",

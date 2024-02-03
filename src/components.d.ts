@@ -9,9 +9,11 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    PersonDetail: typeof import('./components/PersonDetail/index.vue')['default']
     PullList: typeof import('./components/pullList.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    UserForm: typeof import('./components/FormCell/userForm.vue')['default']
     WaterfallsFlow: typeof import('./components/WaterfallsFlow/WaterfallsFlow.vue')['default']
     WaterfallsFlowItem: typeof import('./components/WaterfallsFlowItem/WaterfallsFlowItem.vue')['default']
   }

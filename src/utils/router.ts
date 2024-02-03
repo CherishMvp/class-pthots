@@ -28,9 +28,10 @@ export function onUrlPage(e: any) {
     // 不跳转
   }
 }
-
+// 跳转路径name直接写分包或者主路由的name就行了
 export function forward(name: string, query: Types.Query = {}): any {
   if (needAuthPath.includes(name)) return forward('login')
+  console.log('pagesMap', pagesMap)
   const targetPage = pagesMap.find((i) => i.name === name)
   if (!targetPage) return
   const isReplace = query.replace

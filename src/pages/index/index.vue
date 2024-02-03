@@ -57,11 +57,25 @@
   }
 
   async function fetchHitokoto() {
-    const response = await fetch('https://v1.hitokoto.cn')
-    const { uuid, hitokoto: hitokotoText } = await response.json()
-    hitokotoInfo.href = hitokotoInfo.href + uuid
-    hitokotoInfo.hitokotoText = hitokotoText
-    console.log('hitokotoInfo', hitokotoInfo)
+    // const response = await http.get('https://v1.hitokoto.cn', {})
+    uni.request({
+      url: 'https://v1.hitokoto.cn',
+      data: {},
+      header: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+      method: 'GET',
+      sslVerify: true,
+      success: ({ data, statusCode, header }) => {
+        console.log('data', data)
+        const { uuid, hitokoto } = data as any
+        hitokotoInfo.href = hitokotoInfo.href + uuid
+        hitokotoInfo.hitokotoText = hitokoto
+      },
+      fail: (error) => {},
+    })
   }
 
   const getCurrentRoomPhotos = async (id: number) => {
@@ -89,7 +103,6 @@
   }
   const init = async () => {
     await getAllRoomIDs()
-    await getCurrentRoomPhotos(1)
     console.log('init执行完了')
   }
 
@@ -117,13 +130,10 @@
   const itemTap = (item) => {
     console.log(item)
   }
-  function handleTabChange1(event: any) {
-    console.log('event', event)
-  }
   async function handleTabChange(e: { index: any; name: string }) {
     console.log(e)
     await resetParams()
-    // await fetchHitokoto()//小程序不支持fetch
+    await fetchHitokoto() //小程序不支持fetch
     current_tab.value = e.name
     const id = tabList.value.find((i: any) => i.title == e.name)?.id as number
     console.log('id', id)
@@ -149,7 +159,7 @@
         <view class="card-swiper">
           <wd-swiper
             autoplay
-            :current="4"
+            :current="1"
             custom-indicator-class="custom-indicator-class"
             custom-image-class="custom-image"
             custom-next-image-class="custom-image-prev"
@@ -161,7 +171,7 @@
           ></wd-swiper>
         </view>
         <div class="m20 w-95vw">
-          <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="tipInfo" color="#34D19D" background-color="#f0f9eb" />
+          <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="hitokotoInfo.hitokotoText" color="#34D19D" background-color="#f0f9eb" />
         </div>
         <div class="main_content">
           <WaterfallsFlow :wfList="list" @itemTap="itemTap" />

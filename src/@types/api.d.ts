@@ -88,3 +88,28 @@ declare namespace RoomID {
     desc: string
   }
 }
+declare namespace signIn {
+  interface params {
+    user_id: string | number
+  }
+}
+/**
+ * ResData
+ */
+declare namespace getUserInfo {
+  interface data {
+    member_level: string
+    remain_count: number
+    token: string
+    user_id: number
+    user_name: string
+  }
+}
+interface OssData {
+  accessId: string // OSS 的 AccessKeyId
+  policy: string // OSS 的上传策略
+  signature: string // 对上传策略签名后的字符串
+  callback: string // OSS 上传回调地址
+  dir: string // 存储文件的目录名
+  host: string // OSS 的上传域名
+}

@@ -33,6 +33,20 @@
           "style": {
             "navigationBarTitleText": "测试"
           }
+        },
+        {
+          "name": "personDetail",
+          "path": "personDetail",
+          "style": {
+            "navigationBarTitleText": "个人主页"
+          }
+        },
+        {
+          "name": "editProfile",
+          "path": "editProfile",
+          "style": {
+            "navigationBarTitleText": "编辑个人信息"
+          }
         }
       ]
     }
@@ -44,8 +58,8 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "color": "#aeb0ff",
-    "selectedColor": "#aeb0ff",
+    "color": "#3c816a",
+    "selectedColor": "#25596e",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [

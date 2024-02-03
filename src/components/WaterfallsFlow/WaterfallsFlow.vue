@@ -4,7 +4,7 @@
     <view>
       <view id="left" v-if="leftList.length">
         <view v-for="(item, index) in leftList" :key="index" class="wf-item" @tap="itemTap(item)">
-          <WaterfallsFlowItem :item="item" />
+          <WaterfallsFlowItem :showFooter="showFooter" :item="item" />
         </view>
       </view>
     </view>
@@ -13,7 +13,7 @@
     <view>
       <view id="right" v-if="rightList.length">
         <view v-for="(item, index) in rightList" :key="index" class="wf-item" @tap="itemTap(item)">
-          <WaterfallsFlowItem :item="item" />
+          <WaterfallsFlowItem :showFooter="showFooter" :item="item" />
         </view>
       </view>
     </view>
@@ -36,6 +36,11 @@
       updateNum: {
         type: Number,
         default: 10,
+      },
+      // 是否显示底部栏
+      showFooter: {
+        type: Boolean,
+        default: true,
       },
     },
     data() {

@@ -22,6 +22,7 @@ function reject(err: { errno: number; errmsg: string }) {
 
 // h5环境开启代理
 const apiBaseUrl = isH5 && isDevelopment ? '/api' : env.apiBaseUrl
+const { token } = useStore('user')
 
 function baseRequest(method: 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELETE' | 'TRACE' | 'CONNECT' | undefined, url: string, data: { isLoading: any }) {
   return new Promise((resolve) => {
@@ -33,7 +34,10 @@ function baseRequest(method: 'OPTIONS' | 'GET' | 'HEAD' | 'POST' | 'PUT' | 'DELE
       method,
       timeout: 20000,
       header: {
-        'content-type': method === 'GET' ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded',
+        // 'content-type': method === 'GET' ? 'application/json; charset=utf-8' : 'application/x-www-form-urlencoded',
+        'content-type': 'application/json; charset=utf-8', //統一使用application/json
+
+        Authorization: 'Bearer ' + token.value,
       },
       data,
       success: (res: any) => {

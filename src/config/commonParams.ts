@@ -7,9 +7,9 @@ const commonParams = {
 }
 
 export function getCommonParams() {
-  const { token, userId } = useStore('user')
+  // const { token, userId } = useStore('user')
 
-  return Object.assign({ token: token.value, uuid: userId.value, timestamp: Date.now() }, commonParams)
+  return Object.assign({ timestamp: Date.now() }, commonParams)
 }
 export function setCommonParams(params: Object) {
   Object.assign(commonParams, params)
