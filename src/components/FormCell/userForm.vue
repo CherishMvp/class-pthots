@@ -44,7 +44,7 @@
 
   type USERINFO = {
     user_name: string
-    gender: string
+    gender: number
     address: string
     share_code: string //分享码
     room_name: string //分享码
@@ -88,7 +88,7 @@
     room_name: '',
     imageUrl: '',
     hoby: '',
-    gender: '未知',
+    gender: 3, //1男2女3未知
     address: '',
     room_id: '', //加入他人的组织ID
     dormitory_id: '',
