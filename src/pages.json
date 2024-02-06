@@ -12,14 +12,17 @@
       "path": "pages/index/index",
       "style": {
         "navigationBarTitleText": "首页",
-        "onReachBottomDistance": 50
+        "onReachBottomDistance": 50,
+        "disableScroll": true,
+        "enablePullDownRefresh": false
       }
     },
     {
       "name": "profile",
       "path": "pages/profile/profile",
       "style": {
-        "navigationBarTitleText": "个人"
+        "navigationBarTitleText": "个人",
+        "disableScroll": true
       }
     }
   ],
@@ -31,14 +34,16 @@
           "name": "test",
           "path": "test",
           "style": {
-            "navigationBarTitleText": "测试"
+            "navigationBarTitleText": "测试",
+            "disableScroll": true
           }
         },
         {
           "name": "personDetail",
           "path": "personDetail",
           "style": {
-            "navigationBarTitleText": "个人主页"
+            "navigationBarTitleText": "个人主页",
+            "disableScroll": true
           }
         },
         {

@@ -1,7 +1,5 @@
 <script lang="ts" setup>
   import { useInit } from '@/hooks/useInit'
-  import { useToast } from 'wot-design-uni'
-  const profileDetailToast = useToast()
   onLoad(() => {
     const { pageName, pagePath, pageQuery } = useInit()
     console.log(pageName, pagePath, pageQuery, 'pageName,pagePath, pageQuery')
@@ -10,9 +8,6 @@
     handleClick()
   })
   const isShowCurtain = ref<boolean>(false)
-  const img = ref<string>('https://miniprogram.fancyzh.top/foods/dumplings-8.jpg')
-  const link = ref<string>('/pages/index/index')
-
   function handleClick() {
     isShowCurtain.value = true
   }
@@ -49,7 +44,7 @@
   const state = ref<any>('loading')
   function onScrollToLower() {
     console.log('自定义 onScrollToLower')
-    console.log('被子组件调用了刷新图片方法')
+    console.log('被子组件调用了刷新图片方法',num.value)
     if (num.value === 9) {
       state.value = 'error'
     } else if (num.value < 8) {
@@ -76,14 +71,10 @@
     <!-- 使用自定义下拉组件需要外层嵌套一个高度 -->
     <pullList :on-scroll-to-lower="onScrollToLower">
       <template #list>
-        <!-- <div class="profile h-screen"> -->
-        <!-- 头像和用户名 -->
         <div class="profile-header">
           <image class="profile-avatar" :src="avatarUrl" alt="avatar" />
           <h2 class="profile-username">{{ username }}</h2>
         </div>
-
-        <!-- 粉丝数和关注数 -->
         <div class="profile-stats">
           <div class="profile-stat">
             <div class="profile-stat-count">{{ followers }}</div>
@@ -94,10 +85,8 @@
             <div class="profile-stat-label">关注</div>
           </div>
         </div>
-
-        <!-- 动态列表 -->
-        <!-- 个人相册墙,不显示底部内容  -->
         <WaterfallsFlow style="mt-20" :show-footer="false" :wfList="mockPosts" @itemTap="itemTap" />
+        <div class="pb60"></div>
       </template>
     </pullList>
     <wd-loadmore :state="state" @reload="onScrollToLower" />

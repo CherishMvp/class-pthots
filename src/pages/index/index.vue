@@ -139,6 +139,9 @@
     console.log('id', id)
     await getCurrentRoomPhotos(id)
   }
+  const onScrollToLower = () => {
+    console.log('scroll to lower')
+  }
 </script>
 
 <template>
@@ -152,29 +155,36 @@
     <div class="fs-120 font-400 color-amber">re</div>
     <wd-button type="primary">xx</wd-button> -->
   </view>
-  <wd-tabs v-model="current_tab" animated :sticky="true" swipeable @change="handleTabChange($event)">
+  <wd-tabs v-model="current_tab" animated :sticky="true" @change="handleTabChange($event)">
     <block v-for="item in tabList" :key="item.id">
       <wd-tab custom-class="custom-class-tabs-content" :name="item.title" :title="item.title">
-        <!-- <view class="content">{{ item.desc }}</view> -->
-        <view class="card-swiper">
-          <wd-swiper
-            autoplay
-            :current="1"
-            custom-indicator-class="custom-indicator-class"
-            custom-image-class="custom-image"
-            custom-next-image-class="custom-image-prev"
-            custom-prev-image-class="custom-image-prev"
-            :indicator="{ type: 'dots' }"
-            :list="swiperList"
-            previousMargin="24px"
-            nextMargin="24px"
-          ></wd-swiper>
-        </view>
-        <div class="m20 w-95vw">
-          <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="hitokotoInfo.hitokotoText" color="#34D19D" background-color="#f0f9eb" />
-        </div>
-        <div class="main_content">
-          <WaterfallsFlow :wfList="list" @itemTap="itemTap" />
+        <div class="h-screen">
+          <pullList :on-scroll-to-lower="onScrollToLower">
+            <template #list>
+              <!-- <view class="content">{{ item.desc }}</view> -->
+              <view class="card-swiper">
+                <wd-swiper
+                  autoplay
+                  :current="1"
+                  custom-indicator-class="custom-indicator-class"
+                  custom-image-class="custom-image"
+                  custom-next-image-class="custom-image-prev"
+                  custom-prev-image-class="custom-image-prev"
+                  :indicator="{ type: 'dots' }"
+                  :list="swiperList"
+                  previousMargin="24px"
+                  nextMargin="24px"
+                ></wd-swiper>
+              </view>
+              <div class="m20 w-95vw">
+                <wd-notice-bar prefix="notification-filled" :scrollable="false" :text="hitokotoInfo.hitokotoText" color="#34D19D" background-color="#f0f9eb" />
+              </div>
+              <div class="main_content">
+                <WaterfallsFlow :wfList="list" @itemTap="itemTap" />
+              </div>
+              <div class="pb60"></div>
+            </template>
+          </pullList>
         </div>
       </wd-tab>
     </block>
