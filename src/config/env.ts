@@ -1,4 +1,5 @@
-const apiEnv: ApiEnv = 'devWin'
+const defaultEnv = 'devWin'
+const apiEnv: ApiEnv = defaultEnv
 
 const envMap = {
   dev: {

@@ -16,7 +16,7 @@
       "@/*": ["src/*"]
     },
     "lib": ["esnext", "dom"],
-    "types": ["@uni-helper/uni-ui-types", "pinia-plugin-persist-uni", "@dcloudio/types", "miniprogram-api-typings", "wot-design-uni/global.d.ts"]
+    "types": ["@types/node","@uni-helper/uni-ui-types", "pinia-plugin-persist-uni", "@dcloudio/types", "miniprogram-api-typings", "wot-design-uni/global.d.ts"]
   },
   "exclude": ["node_modules"],
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "src/**/**/*.vue"]

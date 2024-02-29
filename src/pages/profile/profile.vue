@@ -17,14 +17,14 @@
         </div>
       </div>
 
-      <div class="profile p10">
+      <div class="profile p10" v-if="false">
         <div fs-20>
           {{ calRemainCount }}
         </div>
       </div>
     </div>
     <div class="main_content">
-      <wd-cell-group title="个人信息" :border="true">
+      <wd-cell-group title="基础操作" :border="true">
         <wd-cell :title="item.title" :label="item.desc" :center="true" :key="item.id" v-for="item in mockList">
           <view class="custom-value" style="height: 32px">
             <wd-button v-if="item.id !== 4" :plain="true" color="#334" size="medium" type="info" @click="handleClick(item)">{{ item.btn }}</wd-button>
@@ -47,18 +47,18 @@
   })
   const buttonType = ref('contact')
   const mockList = [
-    {
-      id: 1,
-      title: '签到领次数',
-      desc: '每日签到领取次数',
-      btn: '点击签到',
-    },
-    {
-      id: 2,
-      title: '邀请领次数',
-      desc: '邀请好友领取次数',
-      btn: '点击邀请',
-    },
+    // {
+    //   id: 1,
+    //   title: '签到领次数',
+    //   desc: '每日签到领取次数',
+    //   btn: '点击签到',
+    // },
+    // {
+    //   id: 2,
+    //   title: '邀请领次数',
+    //   desc: '邀请好友领取次数',
+    //   btn: '点击邀请',
+    // },
     {
       id: 3,
       title: '完善信息',
@@ -110,6 +110,9 @@
   const handleContact = (params: any) => {
     console.log('params: ', params)
   }
+  const shareFriend = (id: number) => {
+    console.log('id: ', id)
+  }
 
   const handleClick = async (item: any) => {
     console.log('item: ', item)
@@ -117,6 +120,8 @@
       case 1:
         handleSign(item)
         break
+      case 2:
+        shareFriend(item.id)
       case 3:
         forward('editProfile', {
           userinfo: 'xx',
@@ -183,7 +188,7 @@
   page {
     background-color: #fff !important;
   }
-  :deep(.wd-cell-group__left text){
+  :deep(.wd-cell-group__left text) {
     font-size: 40rpx;
   }
 </style>

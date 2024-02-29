@@ -202,19 +202,19 @@
 
       console.log('profileRes', profileRes)
       shareCodeList.value = shareCodeListRes.data
-
-      const { profile, roomInfo } = profileRes.data
-
-      currentUserId.value = profileRes.data.id
-      modelUser.user_name = profile.nickName
-      modelUser.hoby = profile.hoby
-      modelUser.imageUrl = profile.avatar
-      modelUser.share_code = roomInfo.shareCode //自己创建的房间
-      modelUser.room_name = roomInfo.name
-      modelUser.room_id = profile.roomId //加入的组织ID
+      if (profileRes?.data) {
+        const { profile, roomInfo } = profileRes.data
+        currentUserId.value = profileRes.data.id
+        modelUser.user_name = profile.nickName
+        modelUser.hoby = profile.hoby
+        modelUser.imageUrl = profile.avatar
+        modelUser.share_code = roomInfo.shareCode //自己创建的房间
+        modelUser.room_name = roomInfo.name
+        modelUser.room_id = profile.roomId //加入的组织ID
+      }
     } catch (error) {
       console.error('An error occurred:', error)
-      showError('请求出错')
+      // showError('请求出错')
       // 处理错误情况
     }
   }

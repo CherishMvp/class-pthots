@@ -9,6 +9,8 @@ const apiMine = {
   patchUserinfo: (params: { id: number | undefined; updateInfo: any }) => http.post<any>(`/class/user/profile/${params.id}`, params.updateInfo),
   // get all sharecode room info
   getShareCodeRoomInfo: () => http.get<any>('/class/user/findAllShareRooms', {}),
+  //  get one classmate info
+  getOneClassmateInfo: (params: { id: string | undefined }) => http.get<any>(`/class/findOneClassMate/${params.id}`, {}),
 }
 
 export default apiMine

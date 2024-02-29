@@ -12,7 +12,7 @@ export function isFastClick(num = 1000) {
 export function parseUrl(fullPath: string) {
   const [path, queryStr] = fullPath.split('?')
   const name = path.slice(path.lastIndexOf('/') + 1)
-  const query = {}
+  const query: any = {}
   queryStr
     ?.split('&')
     .map((i) => i.split('='))
@@ -32,4 +32,14 @@ export function restoreUrl(path: string, query: Object) {
     count += 1
   }
   return path
+}
+// 性别映射方法
+export function genderMap(gender: number) {
+  if (gender == 0) {
+    return '男'
+  } else if (gender == 1) {
+    return '女'
+  } else {
+    return '未知'
+  }
 }

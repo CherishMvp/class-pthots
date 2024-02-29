@@ -1,9 +1,9 @@
 <template>
   <div class="wf-item-page">
-    <image :src="item?.imageUrl" mode="widthFix" @click="previewImage(item.imageUrl)" class="item-img" />
+    <image :src="item?.imageUrl.split(',')[0]" mode="widthFix" @click="previewImage(item)" class="item-img" />
     <div class="item-info flex-row" v-if="showFooter">
       <!-- 头像栏 -->
-      <image :src="item?.imageUrl" mode="aspectFill" class="info-avatar" />
+      <image :src="item?.avatar" mode="aspectFill" class="info-avatar" />
       <div class="flex right">
         <div class="fs-30 color-black mr-20">{{ item?.name }}</div>
         <div>
@@ -36,21 +36,28 @@
   })
   function goDetail(params) {
     forward('personDetail', {
-      info: params,
+      info: params.id,
     })
     console.log('params', params)
   }
   const previewImage = (params) => {
     if (props.showFooter) {
       goDetail(params)
-    } else
+    } else {
+      if (!params.imageUrl)
+        return uni.showToast({
+          title: '没有图片',
+          icon: 'error',
+          mask: true,
+        })
       uni.previewImage({
-        urls: [params],
+        urls: [params.imageUrl],
         success: (result) => {
           console.log('预览成功', result)
         },
         fail: (error) => {},
       })
+    }
   }
 </script>
 
