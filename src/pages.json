@@ -63,18 +63,23 @@
     "backgroundColor": "#F8F8F8"
   },
   "tabBar": {
-    "color": "#3c816a",
+    "color": "black",
     "selectedColor": "#25596e",
     "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "首页",
+        "iconPath":"static/tabbar/home.png",
+        "selectedIconPath":"static/tabbar/home_act.png"
       },
       {
         "pagePath": "pages/profile/profile",
-        "text": "个人"
+        "text": "我的",
+        "iconPath":"static/tabbar/my.png",
+        "selectedIconPath":"static/tabbar/my_act.png"
+
       }
     ]
   }

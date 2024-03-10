@@ -6,6 +6,7 @@ export default defineStore('id', {
       id: null,
       profile: {
         avatar: 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0',
+        nickName:'',
       },
       user_id: undefined,
       user_name: '',

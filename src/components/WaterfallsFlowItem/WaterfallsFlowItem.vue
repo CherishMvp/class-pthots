@@ -3,11 +3,11 @@
     <image :src="item?.imageUrl.split(',')[0]" mode="widthFix" @click="previewImage(item)" class="item-img" />
     <div class="item-info flex-row" v-if="showFooter">
       <!-- 头像栏 -->
-      <image :src="item?.avatar" mode="aspectFill" class="info-avatar" />
+      <image v-if="item.avatar" :src="item?.avatar" mode="aspectFill" class="info-avatar" />
       <div class="flex right">
         <div class="fs-30 color-black mr-20">{{ item?.name }}</div>
         <div>
-          <wd-tag round type="primary" color="#fdfdfd" bg-color="#25596e">{{ item?.tag.length ? item?.tag : item?.dormitoryId }}</wd-tag>
+          <wd-tag style="font-size: 20px;" round type="primary" color="#fdfdfd" bg-color="#114C4E">{{ item?.tag.length ? item?.tag : item?.dormitoryId }}</wd-tag>
         </div>
       </div>
     </div>
@@ -62,8 +62,8 @@
 </script>
 
 <style>
-  :deep(.wd-tag__text) {
-    /* line-height: 1;*/
+  :deep(.wd-tag) {
+    line-height: normal !important;
   }
 </style>
 
@@ -88,8 +88,8 @@
   }
 
   .info-avatar {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
     margin-right: 5px;
   }

@@ -146,6 +146,7 @@
   ]
   const formUser = ref()
 
+  const {setProfileInfo}=useStore('user');
   const { userId, ID } = useStore('user')
   function handleUserInfoSubmit() {
     console.log('formUser.value', formUser.value)
@@ -154,7 +155,7 @@
       .then(async ({ valid, errors }) => {
         console.log('valid, errors', valid, errors)
         if (valid) {
-          const userInfo = {
+          const userInfo= {
             profile: {
               nickName: modelUser.user_name,
               gender: modelUser.gender,
@@ -173,6 +174,7 @@
           console.log('res', res)
           if (res.data) {
             showSuccess({ msg: '修改成功', duration: 2500 })
+            await setProfileInfo(userInfo.profile)
             await getProfileDetail()
           }
         } else {

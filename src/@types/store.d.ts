@@ -2,7 +2,7 @@ declare namespace User {
   interface Profile {
     nickName: string
     hoby: string
-    roomId: string
+    roomId: string|number|undefined
     gender: number
     address?: string
     avatar: string

@@ -141,6 +141,18 @@
   }
   const onScrollToLower = () => {
     console.log('scroll to lower')
+    uni.showLoading({
+      title: "加载中",
+      mask: true,
+      success: (result)=>{
+        list.value.push(...list.value.slice(0,3))
+      },
+      fail: ()=>{},
+      complete: ()=>{}
+    });
+    setTimeout(() => {
+      uni.hideLoading();
+    }, 1000);
   }
 </script>
 

@@ -12,7 +12,7 @@
           </div>
         </template>
         <div class="u_info flex flex-wrap flex-col ml-14 fw-500">
-          <text>{{ userName }}</text>
+          <text>{{ userInfo.profile.nickName }}</text>
           <text>ID: {{ userId?.toString().slice(0, 6) }}</text>
         </div>
       </div>
